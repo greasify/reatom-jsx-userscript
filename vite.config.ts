@@ -3,7 +3,7 @@ import Userscript from 'vite-userscript-plugin'
 
 import { author, homepage, license, name, version } from './package.json'
 
-export default defineConfig((config) => {
+export default defineConfig(() => {
   return {
     esbuild: {
       jsxFactory: 'h',
