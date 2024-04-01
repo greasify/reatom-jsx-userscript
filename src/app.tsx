@@ -1,7 +1,7 @@
 import { atom } from '@reatom/framework'
 
 import { countAtom } from './counter'
-import { todoAtom, todoLoadingAtom, todoPageAtom } from './todo'
+import { todoAtom, todoIsLoadingAtom, todoPageAtom } from './todo'
 
 const fontSizeAtom = atom((ctx) => ctx.spy(countAtom) + 'px', 'fontSizeAtom')
 
@@ -25,7 +25,7 @@ export function App() {
       <h1>Page: {todoPageAtom}</h1>
       {atom((ctx) => (
         <span>
-          {ctx.spy(todoLoadingAtom) ? 'Loading...' : <pre>{todoAtom}</pre>}
+          {ctx.spy(todoIsLoadingAtom) ? 'Loading...' : <pre>{todoAtom}</pre>}
         </span>
       ))}
     </div>

@@ -5,12 +5,7 @@ import {
   withReducers,
   withStatusesAtom
 } from '@reatom/framework'
-
-async function request<T>(...params: Parameters<typeof fetch>): Promise<T> {
-  const response = await fetch(...params)
-  if (!response.ok) throw new Error(response.statusText)
-  return await response.json()
-}
+import { posts } from './api'
 
 interface Todo {
   userId: number
@@ -26,14 +21,9 @@ export const todoPageAtom = atom(1, 'todoPageAtom').pipe(
   })
 )
 
-export const todoResource = reatomResource(async (ctx) => {
+export const todoResource = reatomResource((ctx) => {
   const page = ctx.spy(todoPageAtom)
-  return await ctx.schedule(() =>
-    request<Todo>(
-      `https://jsonplaceholder.typicode.com/posts/${page}`,
-      ctx.controller
-    )
-  )
+  return ctx.schedule(() => posts.get<Todo>(`${page}`, ctx.controller))
 }, 'todoResource').pipe(withDataAtom(null), withStatusesAtom())
 
 export const todoAtom = atom(
@@ -41,7 +31,7 @@ export const todoAtom = atom(
   'todoAtom'
 )
 
-export const todoLoadingAtom = atom(
+export const todoIsLoadingAtom = atom(
   (ctx) => ctx.spy(todoResource.statusesAtom).isPending,
-  'todoLoadingAtom'
+  'todoIsLoadingAtom'
 )
