@@ -1,0 +1,30 @@
+{
+  "name": "reatom-jsx-userscript",
+  "private": true,
+  "homepage": "https://greasify.github.io/reatom-jsx-userscript/",
+  "version": "0.0.0",
+  "type": "module",
+  "author": "crashmax <userscript@crashmax.ru>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite build --watch --mode development",
+    "build": "pnpm type-check && vite build",
+    "type-check": "tsc --noEmit",
+    "format": "prettier --write \"**/*.{js,ts,tsx,json}\""
+  },
+  "devDependencies": {
+    "@crashmax/prettier-config": "5.0.2",
+    "@reatom/eslint-plugin": "3.4.3",
+    "@typescript-eslint/eslint-plugin": "7.4.0",
+    "@typescript-eslint/parser": "7.4.0",
+    "eslint": "8.57.0",
+    "typescript": "5.4.3",
+    "vite": "5.2.7",
+    "vite-userscript-plugin": "1.10.0"
+  },
+  "dependencies": {
+    "@reatom/framework": "3.4.35",
+    "@reatom/jsx": "3.8.0",
+    "zero-dependency": "0.9.9"
+  }
+}
