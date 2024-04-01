@@ -25,6 +25,12 @@
   "dependencies": {
     "@reatom/framework": "3.4.35",
     "@reatom/jsx": "3.8.0",
+    "@reatom/persist-web-storage": "3.3.3",
     "zero-dependency": "0.9.9"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "@reatom/jsx@3.8.0": "patches/@reatom__jsx@3.8.0.patch"
+    }
   }
 }
