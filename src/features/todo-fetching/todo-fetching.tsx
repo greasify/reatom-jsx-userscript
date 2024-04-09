@@ -2,7 +2,7 @@ import { atom } from '@reatom/framework'
 
 import { todoAtom, todoIsLoadingAtom, todoPageAtom } from './model'
 
-export function Navigation() {
+export function TodoFetching() {
   return (
     <div>
       <button on:click={todoPageAtom.prevTodo}>Prev</button>

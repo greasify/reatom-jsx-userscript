@@ -1,6 +1,6 @@
 import { fontSizeAtom, fontSizeVariableAtom } from './model'
 
-export function FontSize() {
+export function CssVariable() {
   return (
     <div>
       <h1

@@ -1,12 +1,12 @@
-import { FontSize } from './features/font-size/font-size'
-import { Navigation } from './features/navigation/navigation'
+import { CssVariable } from './features/css-variable/css-variable'
+import { TodoFetching } from './features/todo-fetching/todo-fetching'
 import { TodoList } from './features/todo-list/todo-list'
 
 export function App() {
   return (
     <>
-      <FontSize />
-      <Navigation />
+      <CssVariable />
+      <TodoFetching />
       <TodoList />
     </>
   )
