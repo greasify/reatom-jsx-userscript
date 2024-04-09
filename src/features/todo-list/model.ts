@@ -1,5 +1,4 @@
-import { action, atom, parseAtoms } from '@reatom/framework'
-import { withLocalStorage } from '@reatom/persist-web-storage'
+import { action, atom, parseAtoms, withInit } from '@reatom/framework'
 import type { AtomMut, ParseAtoms } from '@reatom/framework'
 
 export const inputAtom = atom('', 'inputAtom')
@@ -9,22 +8,29 @@ interface Todo {
   completed: AtomMut<boolean>
 }
 
-export const todosAtom = atom<Todo[]>([], 'todosAtom').pipe(
-  withLocalStorage({
-    key: 'todos',
-    toSnapshot: parseAtoms,
-    fromSnapshot: (_, snapshotTodos) => {
-      return (snapshotTodos as ParseAtoms<Todo>[]).map((todo) =>
-        getTodoItem(todo.title, todo.completed)
-      )
-    }
-  })
-)
+const TODOS_STORAGE_KEY = 'todos'
 
-todosAtom.onChange((_, todos) => console.log('todos', todos))
+function fromLocalStorage() {
+  const snap = localStorage.getItem(TODOS_STORAGE_KEY)
+  if (!snap) return []
+  const todos: ParseAtoms<Todo[]> = JSON.parse(snap)
+  return todos.map((todo) => getTodoItem(todo.title, todo.completed))
+}
+
+const toLocalStorage = action((ctx) => {
+  const todos = JSON.stringify(parseAtoms(ctx, todosAtom))
+  localStorage.setItem(TODOS_STORAGE_KEY, todos)
+}, 'toLocalStorage')
+
+export const todosAtom = atom<Todo[]>([], 'todosAtom').pipe(
+  withInit(fromLocalStorage)
+)
+todosAtom.onChange(toLocalStorage)
 
 function getTodoItem(title: string, completed: boolean): Todo {
   const completedAtom = atom(completed, `completed#${title}`)
+  completedAtom.onChange(toLocalStorage)
+
   return {
     title,
     completed: completedAtom
