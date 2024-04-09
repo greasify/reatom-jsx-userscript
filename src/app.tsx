@@ -1,10 +1,12 @@
-import { Demo } from './features/demo/demo'
+import { FontSize } from './features/font-size/font-size'
+import { Navigation } from './features/navigation/navigation'
 import { TodoList } from './features/todo-list/todo-list'
 
 export function App() {
   return (
     <>
-      <Demo />
+      <FontSize />
+      <Navigation />
       <TodoList />
     </>
   )

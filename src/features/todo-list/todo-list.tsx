@@ -5,7 +5,7 @@ import { addTodo, clearTodos, inputAtom, todosAtom } from './model'
 export function TodoList() {
   return (
     <div>
-      <h1>Todo List</h1>
+      <h1>Todo list</h1>
       <form on:submit={addTodo}>
         <input
           required

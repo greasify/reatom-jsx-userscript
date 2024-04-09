@@ -6,7 +6,7 @@ import {
   withStatusesAtom
 } from '@reatom/framework'
 
-import { posts } from '../api'
+import { posts } from './api'
 
 interface Todo {
   userId: number
