@@ -1,13 +1,19 @@
-import { atom, withReducers } from '@reatom/framework'
+import { action, atom, withAssign, withReset } from '@reatom/framework'
 
 const INITIAL_FONT_SIZE = 16
 
 export const fontSizeAtom = atom(INITIAL_FONT_SIZE, 'fontSizeAtom').pipe(
-  withReducers({
-    increment: (state) => state + 1,
-    decrement: (state) => state - 1,
-    reset: () => INITIAL_FONT_SIZE
-  })
+  withAssign((fontSize, name) => ({
+    increment: action(
+      (ctx) => fontSize(ctx, (size) => size + 1),
+      `${name}.increment`
+    ),
+    decrement: action(
+      (ctx) => fontSize(ctx, (size) => size - 1),
+      `${name}.decrement`
+    )
+  })),
+  withReset()
 )
 
 export const fontSizeVariableAtom = atom((ctx) => {

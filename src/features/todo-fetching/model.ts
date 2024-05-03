@@ -1,8 +1,9 @@
 import {
+  action,
   atom,
   reatomResource,
+  withAssign,
   withDataAtom,
-  withReducers,
   withStatusesAtom
 } from '@reatom/framework'
 
@@ -16,10 +17,16 @@ interface Todo {
 }
 
 export const todoPageAtom = atom(1, 'todoPageAtom').pipe(
-  withReducers({
-    nextTodo: (state) => state + 1,
-    prevTodo: (state) => Math.max(1, state - 1)
-  })
+  withAssign((todoPage, name) => ({
+    nextTodo: action(
+      (ctx) => todoPage(ctx, (todo) => todo + 1),
+      `${name}.nextTodo`
+    ),
+    prevTodo: action(
+      (ctx) => todoPage(ctx, (todo) => Math.max(1, todo - 1)),
+      `${name}.prevTodo`
+    )
+  }))
 )
 
 export const todoResource = reatomResource((ctx) => {
