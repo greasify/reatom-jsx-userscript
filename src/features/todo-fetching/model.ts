@@ -7,7 +7,7 @@ import {
   withStatusesAtom
 } from '@reatom/framework'
 
-import { posts } from './api'
+import { postsApi } from './api'
 
 interface Todo {
   userId: number
@@ -31,7 +31,11 @@ export const todoPageAtom = atom(1, 'todoPageAtom').pipe(
 
 export const todoResource = reatomResource((ctx) => {
   const page = ctx.spy(todoPageAtom)
-  return ctx.schedule(() => posts.get<Todo>(`${page}`, ctx.controller))
+  return ctx.schedule(() =>
+    postsApi.get<Todo>(`${page}`, {
+      signal: ctx.controller.signal
+    })
+  )
 }, 'todoResource').pipe(withDataAtom(null), withStatusesAtom())
 
 export const todoAtom = atom(

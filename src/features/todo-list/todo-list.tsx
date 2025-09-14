@@ -23,7 +23,13 @@ export function TodoList() {
       {atom((ctx) => (
         <ul>
           {ctx.spy(todosAtom).map((todo) => (
-            <li>
+            <li
+              style={{
+                'text-decoration': ctx.spy(todo.completed)
+                  ? 'line-through'
+                  : 'none'
+              }}
+            >
               <span>{todo.title}</span>
               <input
                 type="checkbox"

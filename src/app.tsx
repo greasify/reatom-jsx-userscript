@@ -4,10 +4,10 @@ import { TodoList } from './features/todo-list/todo-list'
 
 export function App() {
   return (
-    <>
+    <section>
       <CssVariable />
       <TodoFetching />
       <TodoList />
-    </>
+    </section>
   )
 }

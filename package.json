@@ -6,6 +6,13 @@
   "type": "module",
   "author": "crashmax <userscript@crashmax.ru>",
   "license": "MIT",
+  "packageManager": "pnpm@10.16.1",
+  "engines": {
+    "node": "22.19.0"
+  },
+  "volta": {
+    "node": "22.19.0"
+  },
   "scripts": {
     "dev": "vite build --watch --mode development",
     "build": "pnpm type-check && vite build",
@@ -15,17 +22,17 @@
   "devDependencies": {
     "@crashmax/prettier-config": "5.0.2",
     "@reatom/eslint-plugin": "3.4.3",
-    "@typescript-eslint/eslint-plugin": "7.8.0",
-    "@typescript-eslint/parser": "7.8.0",
-    "eslint": "9.1.1",
-    "typescript": "5.4.5",
-    "vite": "5.2.11",
-    "vite-userscript-plugin": "1.10.0"
+    "@typescript-eslint/eslint-plugin": "8.43.0",
+    "@typescript-eslint/parser": "8.43.0",
+    "eslint": "9.35.0",
+    "typescript": "5.9.2",
+    "vite": "7.1.5",
+    "vite-userscript-plugin": "1.11.0"
   },
   "dependencies": {
-    "@reatom/framework": "3.4.38",
-    "@reatom/jsx": "3.10.0",
-    "@reatom/persist-web-storage": "3.4.0",
+    "@reatom/framework": "3.4.64",
+    "@reatom/jsx": "3.18.2",
+    "@reatom/persist-web-storage": "3.4.6",
     "zero-dependency": "0.9.9"
   }
 }
